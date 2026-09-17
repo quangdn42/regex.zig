@@ -43,7 +43,7 @@ pub fn build(b: *std.Build) void {
     });
 
     const run_demo = b.addRunArtifact(demo_exe);
-    if (b.args) |args| run_demo.addArgs(args);
+    run_demo.addPassthruArgs();
     const run_step = b.step("run", "Run regex demo");
     run_step.dependOn(&run_demo.step);
 
@@ -87,7 +87,7 @@ pub fn build(b: *std.Build) void {
     });
     suite_tests.root_module.addImport("export_test", export_test_mod);
     const run_suite_tests = b.addRunArtifact(suite_tests);
-    if (b.args) |args| run_suite_tests.addArgs(args);
+    run_suite_tests.addPassthruArgs();
 
     const test_unit_step = b.step("test-unit", "Run unit tests");
     test_unit_step.dependOn(&run_unit_tests.step);

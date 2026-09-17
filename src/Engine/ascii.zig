@@ -4,7 +4,7 @@ const expect = testing.expect;
 
 pub fn isWordByte(c: u8) bool {
     const set: [256]bool = comptime b: {
-        var out = [_]bool{false} ** 256;
+        var out: [256]bool = @splat(false);
         for ('0'..'9' + 1) |i| out[i] = true;
         for ('A'..'Z' + 1) |i| out[i] = true;
         for ('a'..'z' + 1) |i| out[i] = true;

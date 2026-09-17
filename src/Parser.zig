@@ -333,7 +333,7 @@ fn parseNamedGroup(p: *Parser, p_prefix: bool) !GroupKind {
 fn parseFlags(p: *Parser) !Ast.Flags {
     assert(p.prev() == '?');
     var flags: Ast.Flags = .{};
-    var flag_spans = [_]?Span{null} ** std.meta.fields(Ast.Flags.Item).len;
+    var flag_spans: [@typeInfo(Ast.Flags.Item).@"enum".field_names.len]?Span = @splat(null);
     var disable_op_last = false;
 
     while (p.peek()) |c| {

@@ -61,7 +61,7 @@ fn compileAst(c: *Compiler, ast: *Ast) Error!*Program {
     frag = c.cat(frag, try c.cap(1));
     _ = c.cat(frag, try c.state(.match));
 
-    if (builtin.mode == .Debug) {
+    if (builtin.mode == .debug) {
         assert(c.matcher_count == countMatcherStates(c.states.items));
     }
 

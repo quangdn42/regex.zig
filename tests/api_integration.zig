@@ -55,7 +55,7 @@ test "captures" {
     try expectEqual(null, caps.get(2));
 
     // Preserve capture data
-    var buf = [_]?Match{null} ** 3;
+    var buf: [3]?Match = @splat(null);
     const copied = caps.copy(&buf);
 
     _ = re.find("no match here");

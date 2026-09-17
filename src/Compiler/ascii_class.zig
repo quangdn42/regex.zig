@@ -90,10 +90,10 @@ fn classRanges(comptime tuples: anytype) []const ByteRange {
     }
 
     return comptime blk: {
-        var result: [tuples_info.@"struct".fields.len]ByteRange = undefined;
+        var result: [tuples_info.@"struct".field_names.len]ByteRange = undefined;
         for (tuples, &result) |pair, *range| {
             const pair_info = @typeInfo(@TypeOf(pair));
-            if (pair_info != .@"struct" or !pair_info.@"struct".is_tuple or pair_info.@"struct".fields.len != 2) {
+            if (pair_info != .@"struct" or !pair_info.@"struct".is_tuple or pair_info.@"struct".field_names.len != 2) {
                 @compileError("classRanges entries must be 2-tuples");
             }
             range.* = .init(pair[0], pair[1]);
